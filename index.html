@@ -1,155 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy – Motmaan App</title>
+<title>Motmaan Privacy Policy</title>
 <style>
-    /* Base Styles */
+    :root {
+        --bg-color: #f5f6fa;
+        --text-color: #333;
+        --primary-color: #007855; /* DarkSeaGreen */
+        --highlight-color: #11D77C; /* Seaweed */
+        --container-bg: white;
+    }
+
+    [data-theme="dark"] {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --primary-color: #11D77C; /* Seaweed */
+        --highlight-color: #007855; /* DarkSeaGreen */
+        --container-bg: #1e1e1e;
+    }
+
     body {
         font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-        color: #333;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
         margin: 0;
         padding: 0;
-        line-height: 1.6;
+        transition: background-color 0.3s, color 0.3s;
     }
-    .container {
-        max-width: 900px;
-        margin: auto;
-        padding: 20px;
-    }
-    h1, h2, h3 { color: #007855; }
-    h1 { text-align: center; font-size: 2em; margin-bottom: 0.5em; }
-    h2 { font-size: 1.5em; margin-top: 1.2em; }
-    h3 { font-size: 1.2em; margin-top: 1em; }
-    p, li { font-size: 1em; margin: 0.5em 0; }
-    ul { margin-left: 20px; }
-    a { color: #007855; text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
-    /* Buttons */
-    #lang-switch { text-align: center; margin: 20px 0; }
-    button {
-        padding: 8px 16px;
-        margin: 0 5px;
-        cursor: pointer;
-        background-color: #007855;
-        color: #fff;
+    header {
+        background: var(--primary-color);
+        color: white;
+        padding: 20px 15px;
+        text-align: center;
+        position: relative;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 1.8em;
+    }
+
+    .toggle-btns {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .toggle-btns button {
+        padding: 5px 10px;
         border: none;
         border-radius: 5px;
-        font-size: 1em;
-    }
-    button:hover {
-        background-color: #005f46;
+        cursor: pointer;
+        font-weight: bold;
+        background-color: white;
+        color: var(--primary-color);
+        transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Responsive adjustments */
+    .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 15px;
+        background: var(--container-bg);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    h2, h3 { color: var(--highlight-color); margin-top: 25px; }
+    p, li { margin: 10px 0; }
+    .ar { direction: rtl; text-align: right; }
+    .email { color: var(--highlight-color); text-decoration: none; }
+
     @media (max-width: 600px) {
-        body { font-size: 0.95em; }
-        h1 { font-size: 1.5em; }
-        h2 { font-size: 1.2em; }
-        h3 { font-size: 1em; }
-        button { font-size: 0.9em; padding: 6px 12px; }
+        body { font-size: 16px; }
+        header h1 { font-size: 1.5em; }
     }
 </style>
 </head>
 <body>
-<div class="container">
-    <div id="lang-switch">
-        <button onclick="setLang('en')">English</button>
-        <button onclick="setLang('ar')">العربية</button>
-    </div>
-    <div id="content"></div>
-</div>
 
-<script>
-const content = {
-    en: `
-        <h1>📄 Privacy Policy – Motmaan App</h1>
-        <p><strong>Last updated:</strong> February 13, 2026</p>
-        <p>Welcome to "Motmaan". We respect your privacy and are committed to protecting your data.</p>
+<header>
+    <h1 id="header-title">Privacy Policy – Motmaan app</h1>
+    <div class="toggle-btns">
+        <button id="theme-toggle">🌙 Dark</button>
+        <button id="lang-toggle">AR</button>
+    </div>
+</header>
+
+<div class="container" id="content">
+    <!-- النصوص الإنجليزية والعربية -->
+    <div id="en-content">
+        <p class="update">Last Update: 13 February 2026</p>
+        <p>Welcome to <strong>Motmaan</strong>. We respect your privacy and are committed to protecting your data.</p>
+
         <h2>🔹 Information We Collect</h2>
         <p>Motmaan does not collect or store any personal user data.</p>
+
         <h3>1️⃣ Location Data</h3>
-        <p>The app requests access to precise or approximate location in order to:</p>
-        <ul>
-            <li>Determine the user's location</li>
-            <li>Calculate prayer times accurately according to the current city</li>
-        </ul>
-        <p>⚠️ Location is used only within the app to calculate prayer times and is not stored on external servers or shared with third parties.</p>
-        <h3>2️⃣ Display Over Other Apps</h3>
-        <p>The app uses permission: <strong>SYSTEM_ALERT_WINDOW</strong></p>
-        <p>To enable the floating tasbeeh feature. This allows the app to show the tasbeeh on the screen over other apps for convenience.</p>
-        <p>⚠️ This permission is not used for any other purpose.</p>
+        <p>We request permission to access your location to determine your current location and calculate accurate prayer times.</p>
+        <p>⚠️ Location is only used inside the app and is <strong>not stored or shared</strong> with any third party.</p>
+
+        <h3>2️⃣ SYSTEM_ALERT_WINDOW Permission</h3>
+        <p>The app uses this permission to enable the floating rosary feature. ⚠️ Only for this purpose.</p>
+
         <h3>3️⃣ Internet Access</h3>
-        <p>The app uses internet permission to:</p>
-        <ul>
-            <li>Update prayer times when needed</li>
-            <li>Improve app performance</li>
-        </ul>
-        <p>No personal data is collected or sent externally.</p>
-        <h3>4️⃣ Data Security</h3>
+        <p>Used to update prayer times and improve app performance. No personal data is sent externally.</p>
+
+        <h2>4️⃣ Data Security</h2>
         <ul>
             <li>No user accounts are created</li>
             <li>No personal data is stored</li>
-            <li>No data is sold or shared</li>
+            <li>We do not sell or share any data</li>
         </ul>
-        <h3>5️⃣ Children's Privacy</h3>
-        <p>The app is suitable for general use and does not collect personal data from children.</p>
-        <h3>6️⃣ Privacy Policy Updates</h3>
-        <p>The policy may be updated occasionally and any changes will be posted on this page.</p>
-        <h3>7️⃣ Contact Us</h3>
-        <p>For any privacy-related inquiries, contact us at:</p>
-        <p>📧 Email: <a href="mailto:ahmedmme.26@gmail.com">ahmedmme.26@gmail.com</a></p>
-    `,
-    ar: `
-        <h1>📄 سياسة الخصوصية – تطبيق مطمئن</h1>
-        <p><strong>آخر تحديث:</strong> 13 فبراير 2026</p>
-        <p>مرحبًا بك في تطبيق "مطمئن". نحن نحترم خصوصيتك ونلتزم بحماية بياناتك.</p>
+
+        <h2>5️⃣ Children Privacy</h2>
+        <p>The app is suitable for general use and does not collect personal information from children.</p>
+
+        <h2>6️⃣ Updates to Privacy Policy</h2>
+        <p>Any updates will be posted on this page.</p>
+
+        <h2>7️⃣ Contact Us</h2>
+        <p>Email us at: <a class="email" href="mailto:ahmedmme.26@gmail.com">ahmedmme.26@gmail.com</a></p>
+    </div>
+
+    <div id="ar-content" class="ar" style="display:none;">
+        <p class="update">آخر تحديث: 13 فبراير 2026</p>
+        <p>مرحبًا بك في تطبيق <strong>مطمئن</strong>. نحن نحترم خصوصيتك ونلتزم بحماية بياناتك.</p>
+
         <h2>🔹 المعلومات التي نجمعها</h2>
         <p>تطبيق "مطمئن" لا يجمع أو يخزن أي بيانات شخصية للمستخدمين.</p>
-        <h3>1️⃣ بيانات الموقع (Location)</h3>
-        <p>يطلب التطبيق إذن الوصول إلى الموقع الجغرافي الدقيق أو التقريبي من أجل:</p>
-        <ul>
-            <li>تحديد موقع المستخدم</li>
-            <li>حساب مواعيد الصلاة بدقة حسب المدينة الحالية</li>
-        </ul>
-        <p>⚠️ يتم استخدام الموقع فقط داخل التطبيق لحساب مواعيد الصلاة، ولا يتم تخزينه على أي خوادم خارجية أو مشاركته مع أي طرف ثالث.</p>
+
+        <h3>1️⃣ بيانات الموقع</h3>
+        <p>يطلب التطبيق إذن الوصول إلى الموقع الجغرافي لتحديد موقع المستخدم وحساب مواعيد الصلاة بدقة حسب المدينة الحالية.</p>
+        <p>⚠️ يتم استخدام الموقع فقط داخل التطبيق ولا يتم تخزينه أو مشاركته مع أي طرف ثالث.</p>
+
         <h3>2️⃣ إذن الظهور فوق التطبيقات الأخرى</h3>
-        <p>يستخدم التطبيق إذن: <strong>SYSTEM_ALERT_WINDOW</strong></p>
-        <p>لتمكين وظيفة السبحة العائمة داخل التطبيق. هذا يعني أن التطبيق يستطيع عرض السبحة على الشاشة فوق التطبيقات الأخرى لتسهيل استخدامها أثناء التنقل بين التطبيقات.</p>
-        <p>⚠️ لا يتم استخدام هذا الإذن لأي غرض آخر خارج وظيفة السبحة العائمة.</p>
+        <p>يستخدم التطبيق إذن <strong>SYSTEM_ALERT_WINDOW</strong> لتمكين وظيفة السبحة العائمة. ⚠️ لا يتم استخدام هذا الإذن لأي غرض آخر.</p>
+
         <h3>3️⃣ الاتصال بالإنترنت</h3>
-        <p>يستخدم التطبيق إذن الإنترنت من أجل:</p>
-        <ul>
-            <li>تحديث بيانات مواعيد الصلاة عند الحاجة</li>
-            <li>تحسين أداء التطبيق</li>
-        </ul>
-        <p>ولا يتم جمع أو إرسال بيانات شخصية إلى أي جهة خارجية.</p>
-        <h3>4️⃣ أمان البيانات</h3>
+        <p>يتم استخدام الإنترنت لتحديث بيانات مواعيد الصلاة وتحسين أداء التطبيق، دون جمع بيانات شخصية.</p>
+
+        <h2>4️⃣ أمان البيانات</h2>
         <ul>
             <li>لا نقوم بإنشاء حسابات مستخدمين</li>
             <li>لا نقوم بتخزين بيانات شخصية</li>
             <li>لا نبيع أو نشارك أي بيانات</li>
         </ul>
-        <h3>5️⃣ خصوصية الأطفال</h3>
+
+        <h2>5️⃣ خصوصية الأطفال</h2>
         <p>التطبيق مناسب للاستخدام العام ولا يجمع بيانات شخصية عن الأطفال.</p>
-        <h3>6️⃣ التعديلات على سياسة الخصوصية</h3>
-        <p>قد يتم تحديث سياسة الخصوصية من وقت لآخر، وسيتم نشر أي تحديث داخل هذه الصفحة.</p>
-        <h3>7️⃣ التواصل معنا</h3>
-        <p>لأي استفسار بخصوص سياسة الخصوصية يمكن التواصل عبر:</p>
-        <p>📧 البريد الإلكتروني: <a href="mailto:ahmedmme.26@gmail.com">ahmedmme.26@gmail.com</a></p>
-    `
-};
 
-function setLang(lang) {
-    document.getElementById('content').innerHTML = content[lang];
-    document.documentElement.lang = lang;
-}
+        <h2>6️⃣ التعديلات على سياسة الخصوصية</h2>
+        <p>قد يتم تحديث سياسة الخصوصية من وقت لآخر وسيتم نشر أي تحديث داخل هذه الصفحة.</p>
 
-// Default language: English
-setLang('en');
+        <h2>7️⃣ التواصل معنا</h2>
+        <p>لأي استفسار بخصوص سياسة الخصوصية يمكن التواصل عبر: <a class="email" href="mailto:ahmedmme.26@gmail.com">ahmedmme.26@gmail.com</a></p>
+    </div>
+</div>
+
+<script>
+    const htmlRoot = document.getElementById('html-root');
+    const themeBtn = document.getElementById('theme-toggle');
+    const langBtn = document.getElementById('lang-toggle');
+    const enContent = document.getElementById('en-content');
+    const arContent = document.getElementById('ar-content');
+    const headerTitle = document.getElementById('header-title');
+
+    // الوضع المظلم
+    themeBtn.addEventListener('click', () => {
+        if (htmlRoot.getAttribute('data-theme') === 'dark') {
+            htmlRoot.removeAttribute('data-theme');
+            themeBtn.textContent = '🌙 Dark';
+        } else {
+            htmlRoot.setAttribute('data-theme', 'dark');
+            themeBtn.textContent = '☀️ Light';
+        }
+    });
+
+    // تغيير اللغة
+    langBtn.addEventListener('click', () => {
+        if (enContent.style.display === 'none') {
+            enContent.style.display = 'block';
+            arContent.style.display = 'none';
+            langBtn.textContent = 'AR';
+            headerTitle.textContent = 'Privacy Policy – Motmaan app';
+        } else {
+            enContent.style.display = 'none';
+            arContent.style.display = 'block';
+            langBtn.textContent = 'EN';
+            headerTitle.textContent = 'سياسة الخصوصية – تطبيق مطمئن';
+        }
+    });
 </script>
+
 </body>
 </html>
